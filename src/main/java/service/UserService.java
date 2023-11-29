@@ -1,6 +1,7 @@
 package service;
 
 import dao.UserDao;
+import dto.Task;
 import dto.UserDto;
 import helper.AES;
 
@@ -21,18 +22,27 @@ public class UserService {
 			}
 		}
 	}
-	
-	public boolean login(String email,String password)
-	{
+
+	public boolean login(String email, String password) {
 		UserDao dao = new UserDao();
 		UserDto dto = dao.findByEmail(email);
-		if(dto==null)
+		if (dto == null)
 			return false;
 		else {
-			if(password.equals(AES.decrypt(dto.getPassword(),"123")))
+			if (password.equals(AES.decrypt(dto.getPassword(), "123")))
 				return true;
 			else
 				return false;
 		}
+	}
+
+	public void saveTask(Task task) {
+		UserDao dao = new UserDao();
+		dao.saveTask(task);
+	}
+
+	public void updateUser(UserDto dto) {
+		UserDao dao = new UserDao();
+		dao.updateUser(dto);
 	}
 }

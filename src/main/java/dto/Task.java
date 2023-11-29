@@ -1,30 +1,22 @@
 package dto;
 
-import java.time.LocalDate;
-import java.util.List;
+import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
 import lombok.Data;
 
 @Entity
 @Data
-public class UserDto {
+public class Task {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	int id;
 	String name;
-	String email;
-	String password;
-	long mobile;
-	LocalDate dob;
-	String gender;
-	int age;
-	
-	@OneToMany
-	List<Task> tasks;
+	String description;
+	LocalDateTime createdTime;
+	boolean status;
 }
