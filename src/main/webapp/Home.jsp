@@ -1,4 +1,5 @@
 <%-- These are imports of Java --%>
+<%@page import="java.time.format.DateTimeFormatter"%>
 <%@page import="dto.Task"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -36,14 +37,24 @@ div {
 			<%-- Making sure list is present and iterating over it --%>
 			<%
 			if (list != null) {
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM YYYY hh:mm");
 				for (Task task : list) {
 			%>
 			<%--we can not use one tag inside another so opened for loop  --%>
 			<tr>
 				<th><%=task.getName()%></th>
 				<th><%=task.getDescription()%></th>
-				<th><%=task.getCreatedTime()%></th>
-				<th><%=task.isStatus()%></th>
+				<th><%=task.getCreatedTime().format(formatter)%></th>
+				<th>
+					<%
+					if (task.isStatus()) {
+					%> Completed <%
+					} else {
+					%>
+					<button>Complete</button> <%
+ }
+ %>
+				</th>
 				<th><button>Delete</button></th>
 				<th><button>Edit</button></th>
 			</tr>
