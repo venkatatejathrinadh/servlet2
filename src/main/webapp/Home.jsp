@@ -1,3 +1,4 @@
+<%-- These are imports of Java --%>
 <%@page import="dto.Task"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -17,6 +18,7 @@ div {
 <title>Todo Home</title>
 </head>
 <body>
+	<%-- To Receive the tasks of user --%>
 	<%
 	List<Task> list = (List<Task>) request.getAttribute("list");
 	%>
@@ -31,10 +33,12 @@ div {
 				<th>Delete</th>
 				<th>Edit</th>
 			</tr>
+			<%-- Making sure list is present and iterating over it --%>
 			<%
-			if(list!=null)
-			{
-			for(Task task:list){ %>
+			if (list != null) {
+				for (Task task : list) {
+			%>
+			<%--we can not use one tag inside another so opened for loop  --%>
 			<tr>
 				<th><%=task.getName()%></th>
 				<th><%=task.getDescription()%></th>
@@ -43,7 +47,11 @@ div {
 				<th><button>Delete</button></th>
 				<th><button>Edit</button></th>
 			</tr>
-			<%} }%>
+			<%-- Closing for loop and if here --%>
+			<%
+			}
+			}
+			%>
 		</table>
 		<br> <a href="session-add-task"><button>Add Task</button></a><br>
 		<a href="logout"><button>Logout</button></a>
