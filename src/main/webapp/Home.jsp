@@ -51,7 +51,8 @@ div {
 					%> Completed <%
 					} else {
 					%>
-					<button>Complete</button> <%
+					<%-- Url rewriting for carrying primary key --%>
+					<a href="change-status?id=<%=task.getId()%>"><button>Complete</button></a> <%
  }
  %>
 				</th>

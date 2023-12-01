@@ -7,6 +7,8 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
+import org.apache.catalina.User;
+
 import dto.Task;
 import dto.UserDto;
 
@@ -41,5 +43,18 @@ public class UserDao {
 		manager.getTransaction().begin();
 		manager.merge(dto);
 		manager.getTransaction().commit();
+	}
+	public Task findTaskById(int id) {
+		return manager.find(Task.class, id);
+	}
+	public void updateTask(Task task) {
+		manager.getTransaction().begin();
+		manager.merge(task);
+		manager.getTransaction().commit();
+	}
+	
+	public UserDto findById(int id)
+	{
+		return manager.find(UserDto.class, id);
 	}
 }
