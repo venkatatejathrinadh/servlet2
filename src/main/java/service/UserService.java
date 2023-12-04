@@ -71,6 +71,11 @@ public class UserService {
 		dao.deleteTask(task);
 		}
 	}
+
+	public void updateTask(Task task) {
+		UserDao dao = new UserDao();
+		dao.updateTask(task);
+	}
 	
 	
 }
